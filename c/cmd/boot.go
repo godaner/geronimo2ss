@@ -1,7 +1,7 @@
 package main
 
 import (
-	gn "github.com/godaner/geronimo/net"
+	gn "github.com/godaner/geronimo/net/v2"
 	"github.com/godaner/geronimo2ss/c/cfg"
 	"io"
 	"log"
@@ -69,6 +69,8 @@ func main() {
 func addr(addr string) (ip string, port int64) {
 	ss := strings.Split(addr, ":")
 	ip = ss[0]
-	port, _ = strconv.ParseInt(ss[1], 10, 64)
+	if len(ss)>1{
+		port, _ = strconv.ParseInt(ss[1], 10, 64)
+	}
 	return ip, port
 }
