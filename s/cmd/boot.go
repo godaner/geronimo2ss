@@ -1,10 +1,10 @@
 package main
 
 import (
+	gologging "github.com/godaner/geronimo/logger/go-logging"
 	gn "github.com/godaner/geronimo/net/v2"
 	"github.com/godaner/geronimo2ss/s/cfg"
 	"io"
-	"log"
 	"net"
 	"strconv"
 	"strings"
@@ -12,7 +12,7 @@ import (
 
 func main() {
 	cfg.ParseFlag()
-	log.SetFlags(log.Llongfile | log.LstdFlags)
+	logger := gologging.NewLogger("C", nil)
 	ip, port := addr(cfg.LocalAddr)
 	l, err := gn.Listen(&gn.GAddr{
 		IP:   ip,
@@ -26,7 +26,7 @@ func main() {
 	for {
 		lc, err := l.Accept()
 		if err != nil {
-			log.Println(err)
+			logger.Error(err)
 			continue
 		}
 
@@ -34,7 +34,7 @@ func main() {
 
 			rc, err := net.Dial("tcp", cfg.RemoteAddr)
 			if err != nil {
-				log.Println(err)
+				logger.Error(err)
 				lc.Close()
 				return
 			}
@@ -42,7 +42,7 @@ func main() {
 			go func() {
 				_, err = io.Copy(lc, rc)
 				if err != nil {
-					log.Println("io.Copy 1", err)
+					logger.Error("io.Copy 1", err)
 				}
 
 				rc.Close()
@@ -53,7 +53,7 @@ func main() {
 			go func() {
 				_, err = io.Copy(rc, lc)
 				if err != nil {
-					log.Println("io.Copy 2", err)
+					logger.Error("io.Copy 2", err)
 				}
 
 				rc.Close()
