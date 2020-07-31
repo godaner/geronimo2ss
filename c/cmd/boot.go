@@ -12,7 +12,8 @@ import (
 
 func main() {
 	cfg.ParseFlag()
-	logger := gologging.NewLogger("C", nil)
+	gologging.SetLogger("geronimo2ss")
+	logger := gologging.GetLogger("C")
 	l, err := net.Listen("tcp", cfg.LocalAddr)
 	if err != nil {
 		panic(err)

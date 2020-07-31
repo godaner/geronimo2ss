@@ -12,7 +12,8 @@ import (
 
 func main() {
 	cfg.ParseFlag()
-	logger := gologging.NewLogger("C", nil)
+	gologging.SetLogger("geronimo2ss")
+	logger := gologging.GetLogger("S")
 	ip, port := addr(cfg.LocalAddr)
 	l, err := gn.Listen(&gn.GAddr{
 		IP:   ip,
