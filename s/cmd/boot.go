@@ -2,7 +2,7 @@ package main
 
 import (
 	gologging "github.com/godaner/geronimo/logger/go-logging"
-	gn "github.com/godaner/geronimo/net/v2"
+	gn "github.com/godaner/geronimo/net/v1"
 	"github.com/godaner/geronimo2ss/s/cfg"
 	"io"
 	"net"
