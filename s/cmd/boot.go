@@ -2,7 +2,7 @@ package main
 
 import (
 	gologging "github.com/godaner/geronimo/logger/go-logging"
-	gn "github.com/godaner/geronimo/net/v1"
+	net2 "github.com/godaner/geronimo/net"
 	"github.com/godaner/geronimo2ss/s/cfg"
 	"io"
 	"net"
@@ -15,7 +15,7 @@ func main() {
 	gologging.SetLogger("geronimo2ss")
 	logger := gologging.GetLogger("S")
 	ip, port := addr(cfg.LocalAddr)
-	l, err := gn.Listen(&gn.GAddr{
+	l, err := net2.Listen(&net2.GAddr{
 		IP:   ip,
 		Port: int(port),
 	})
