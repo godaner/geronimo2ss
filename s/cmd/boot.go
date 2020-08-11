@@ -1,24 +1,28 @@
 package main
 
 import (
+	"github.com/godaner/geronimo/logger"
 	gologging "github.com/godaner/geronimo/logger/go-logging"
-	net2 "github.com/godaner/geronimo/net"
+	gn "github.com/godaner/geronimo/net"
 	"github.com/godaner/geronimo2ss/s/cfg"
 	"io"
 	"net"
+	"net/http"
+	_ "net/http/pprof"
 	"strconv"
 	"strings"
 )
 
 func main() {
 	cfg.ParseFlag()
-	gologging.SetLogger("geronimo2ss")
+	gologging.SetLogger("geronimo2ss", logger.SetLevel(logger.Level(cfg.LogLev)), logger.SetLogPath(cfg.LogPath))
+	go http.ListenAndServe(":8888", nil)
 	logger := gologging.GetLogger("S")
 	ip, port := addr(cfg.LocalAddr)
-	l, err := net2.Listen(&net2.GAddr{
+	l, err := gn.Listen(&gn.GAddr{
 		IP:   ip,
 		Port: int(port),
-	})
+	}, gn.SetOverBose(cfg.OverBose))
 
 	if err != nil {
 		panic(err)
@@ -67,12 +71,11 @@ func main() {
 
 }
 
-
 // addr
 func addr(addr string) (ip string, port int64) {
 	ss := strings.Split(addr, ":")
 	ip = ss[0]
-	if len(ss)>1{
+	if len(ss) > 1 {
 		port, _ = strconv.ParseInt(ss[1], 10, 64)
 	}
 	return ip, port

@@ -3,8 +3,6 @@
     Geronimo2ss.
 ### Features
     nothing
-### Environment variable
-    LOG_LEV=[CRIT,ERRO,WARN,NOTI,INFO,DEBU] , default is INFO
 ### Usage
 ##### shadowsocks-local,don't need change
     ./go-shadowsocks2 -c 'ss://AEAD_CHACHA20_POLY1305:123qwe@127.0.0.1:1555' -socks :1080
