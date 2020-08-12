@@ -16,7 +16,7 @@ import (
 func main() {
 	cfg.ParseFlag()
 	gologging.SetLogger("geronimo2ss", logger.SetLevel(logger.Level(cfg.LogLev)), logger.SetLogPath(cfg.LogPath))
-	go http.ListenAndServe(":8888", nil)
+	go http.ListenAndServe(":9999", nil)
 	logger := gologging.GetLogger("S")
 	ip, port := addr(cfg.LocalAddr)
 	l, err := gn.Listen(&gn.GAddr{
