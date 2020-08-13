@@ -1,10 +1,12 @@
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 src*
 dst*
-cmd/s
-cmd/s.exe
-cmd/c
-cmd/c.exe
+c/cmd/c-linux64
+c/cmd/c-mac64
+c/cmd/c-win64.exe
+s/cmd/s-linux64
+s/cmd/s-mac64
+s/cmd/s-win64.exe
 *.o
 *.a
 *.so
@@ -34,5 +36,3 @@ _testmain.go
 .wercker
 
 
-# specific linux exec file cmd
-cmd
