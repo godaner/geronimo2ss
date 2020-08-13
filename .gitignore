@@ -1,6 +1,12 @@
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 src*
 dst*
+cmd/c-linux64
+cmd/c-mac64
+cmd/c-win64.exe
+cmd/s-linux64
+cmd/s-mac64
+cmd/s-win64.exe
 *.o
 *.a
 *.so
@@ -20,6 +26,7 @@ _cgo_gotypes.go
 _cgo_export.*
 _testmain.go
 .settings
+*.exe
 *.exe~
 *.test
 *.prof
