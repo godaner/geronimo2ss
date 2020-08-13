@@ -34,7 +34,7 @@ func main() {
 			rc, err := gn.Dial(&gn.GAddr{
 				IP:   ip,
 				Port: int(port),
-			}, gn.SetOverBose(cfg.OverBose))
+			}, gn.SetOverBose(cfg.OverBose), gn.SetEnc(cfg.Enc))
 			if err != nil {
 				logger.Error("Dial err", err)
 				lc.Close()
