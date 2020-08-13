@@ -22,7 +22,7 @@ func main() {
 	l, err := gn.Listen(&gn.GAddr{
 		IP:   ip,
 		Port: int(port),
-	}, gn.SetOverBose(cfg.OverBose))
+	}, gn.SetOverBose(cfg.OverBose),gn.SetEnc(cfg.Enc))
 
 	if err != nil {
 		panic(err)
