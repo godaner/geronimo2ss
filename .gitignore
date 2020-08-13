@@ -2,7 +2,9 @@
 src*
 dst*
 cmd/s
+cmd/s.exe
 cmd/c
+cmd/c.exe
 *.o
 *.a
 *.so
