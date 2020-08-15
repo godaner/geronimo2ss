@@ -7,6 +7,7 @@ c/cmd/c-win64.exe
 s/cmd/s-linux64
 s/cmd/s-mac64
 s/cmd/s-win64.exe
+*.log
 *.o
 *.a
 *.so
