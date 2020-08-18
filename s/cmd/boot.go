@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/godaner/geronimo/logger"
-	gologging "github.com/godaner/geronimo/logger/go-logging"
+	"github.com/godaner/logger"
 	gn "github.com/godaner/geronimo/net"
 	"github.com/godaner/geronimo2ss/s/cfg"
+	loggerfac "github.com/godaner/logger/factory"
 	"io"
 	"net"
 	"net/http"
@@ -15,9 +15,9 @@ import (
 
 func main() {
 	cfg.ParseFlag()
-	gologging.SetLogger("geronimo2ss", logger.SetLevel(logger.Level(cfg.LogLev)), logger.SetLogPath(cfg.LogPath))
+	loggerfac.InitLoggerFactory("geronimo2ss", loggerfac.SetLevel(logger.Level(cfg.LogLev)), loggerfac.SetLogPath(cfg.LogPath))
+	logger := loggerfac.LoggerFactory.GetLogger("S")
 	go http.ListenAndServe(":9999", nil)
-	logger := gologging.GetLogger("S")
 	ip, port := addr(cfg.LocalAddr)
 	l, err := gn.Listen(&gn.GAddr{
 		IP:   ip,
