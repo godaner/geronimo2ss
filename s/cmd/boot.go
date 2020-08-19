@@ -15,8 +15,8 @@ import (
 
 func main() {
 	cfg.ParseFlag()
-	loggerfac.InitLoggerFactory("geronimo2ss", loggerfac.SetLevel(logger.Level(cfg.LogLev)), loggerfac.SetLogPath(cfg.LogPath))
-	logger := loggerfac.LoggerFactory.GetLogger("S")
+	loggerfac.Init("geronimo2ss", loggerfac.SetLevel(logger.Level(cfg.LogLev)), loggerfac.SetLogPath(cfg.LogPath))
+	logger := loggerfac.GetLogger("S")
 	go http.ListenAndServe(":9999", nil)
 	ip, port := addr(cfg.LocalAddr)
 	l, err := gn.Listen(&gn.GAddr{
