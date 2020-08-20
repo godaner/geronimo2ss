@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	github.com/godaner/geronimo v1.0.1
-	github.com/godaner/logger v1.0.0
+	github.com/godaner/logger v1.0.1
 
 )
 
