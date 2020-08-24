@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/godaner/geronimo/logger"
-	gologging "github.com/godaner/geronimo/logger/go-logging"
 	gn "github.com/godaner/geronimo/net"
 	"github.com/godaner/geronimo2ss/c/cfg"
+	"github.com/godaner/logger"
+	loggerfac "github.com/godaner/logger/factory"
 	"io"
 	"net"
 	"net/http"
@@ -15,9 +15,9 @@ import (
 
 func main() {
 	cfg.ParseFlag()
-	gologging.SetLogger("geronimo2ss", logger.SetLevel(logger.Level(cfg.LogLev)), logger.SetLogPath(cfg.LogPath))
+	loggerfac.Init("geronimo2ss", loggerfac.SetLevel(logger.Level(cfg.LogLev)), loggerfac.SetLogPath(cfg.LogPath))
+	logger := loggerfac.GetLogger("C")
 	go http.ListenAndServe(":8888", nil)
-	logger := gologging.GetLogger("C")
 	l, err := net.Listen("tcp", cfg.LocalAddr)
 	if err != nil {
 		panic(err)
@@ -34,7 +34,7 @@ func main() {
 			rc, err := gn.Dial(&gn.GAddr{
 				IP:   ip,
 				Port: int(port),
-			}, gn.SetOverBose(cfg.OverBose), gn.SetEnc(cfg.Enc))
+			}, gn.SetEnc(cfg.Enc))
 			if err != nil {
 				logger.Error("Dial err", err)
 				lc.Close()
