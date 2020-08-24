@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/godaner/logger"
-	loggerfac "github.com/godaner/logger/factory"
 	gn "github.com/godaner/geronimo/net"
 	"github.com/godaner/geronimo2ss/c/cfg"
+	"github.com/godaner/logger"
+	loggerfac "github.com/godaner/logger/factory"
 	"io"
 	"net"
 	"net/http"
@@ -34,7 +34,7 @@ func main() {
 			rc, err := gn.Dial(&gn.GAddr{
 				IP:   ip,
 				Port: int(port),
-			}, gn.SetOverBose(cfg.OverBose), gn.SetEnc(cfg.Enc))
+			}, gn.SetEnc(cfg.Enc))
 			if err != nil {
 				logger.Error("Dial err", err)
 				lc.Close()

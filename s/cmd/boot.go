@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/godaner/logger"
 	gn "github.com/godaner/geronimo/net"
 	"github.com/godaner/geronimo2ss/s/cfg"
+	"github.com/godaner/logger"
 	loggerfac "github.com/godaner/logger/factory"
 	"io"
 	"net"
@@ -22,7 +22,7 @@ func main() {
 	l, err := gn.Listen(&gn.GAddr{
 		IP:   ip,
 		Port: int(port),
-	}, gn.SetOverBose(cfg.OverBose),gn.SetEnc(cfg.Enc))
+	}, gn.SetEnc(cfg.Enc))
 
 	if err != nil {
 		panic(err)
